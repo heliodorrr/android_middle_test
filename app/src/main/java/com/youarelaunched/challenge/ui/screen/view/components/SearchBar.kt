@@ -2,7 +2,6 @@ package com.youarelaunched.challenge.ui.screen.view.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -55,6 +54,7 @@ fun SearchBar(
                 placeholderValue =  stringResource(R.string.searchbar_hint),
                 onValueChange = {
                     searchQuery = it
+                    onUserInput(SearchQueryAction.Auto(searchQuery))
                                 },
                 textStyle = textStyle,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
@@ -68,7 +68,7 @@ fun SearchBar(
                 modifier = Modifier
                     .size(24.dp)
                     .align(Alignment.CenterEnd)
-                    .clickable { onUserInput(SearchQueryAction.Auto(searchQuery)) }
+                    .clickable { onUserInput(SearchQueryAction.Forced(searchQuery)) }
                 ,
                 tint = Color.Unspecified
             )

@@ -19,6 +19,8 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -51,9 +53,23 @@ android {
 
     packagingOptions {
         resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += [
+                    'META-INF/LICENSE.md',
+                    '/META-INF/{AL2.0,LGPL2.1}',
+                    'META-INF/LICENSE-notice.md'
+            ]
+
         }
     }
+
+    testOptions {
+        packagingOptions {
+            jniLibs {
+                useLegacyPackaging true
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -86,7 +102,10 @@ dependencies {
     testImplementation test.coroutines
     testImplementation test.mockk
 
+
+    androidTestImplementation test.core
     androidTestImplementation instrumentalTest.runner
+    androidTestImplementation instrumentalTest.mockk
     androidTestImplementation instrumentalTest.rules
     androidTestImplementation instrumentalTest.composeTest
     debugImplementation instrumentalTest.composeTestActivity

@@ -19,9 +19,11 @@ buildscript {
 
         def androidXTestVersion = "1.5.0"
         def jUnitVersion = "4.13.2"
+        def mockkVer = "1.12.3"
+
         test = [
                 junit: "junit:junit:$jUnitVersion",
-                mockk: "io.mockk:mockk:1.13.5",
+                mockk: "io.mockk:mockk:$mockkVer",
                 coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version",
                 core: "androidx.test:core-ktx:$androidXTestVersion"
 
@@ -33,7 +35,8 @@ buildscript {
                 runner: "androidx.test:runner:$testRunnerVersion",
                 rules: "androidx.test:rules:$testRulesVersion",
                 composeTestActivity: "androidx.compose.ui:ui-test-manifest:$composeUiVersion",
-                composeTest: "androidx.compose.ui:ui-test-junit4:$composeUiVersion"
+                composeTest: "androidx.compose.ui:ui-test-junit4:$composeUiVersion",
+                mockk: "io.mockk:mockk-android:$mockkVer"
         ]
 
         //AndroidX core RN https://developer.android.com/jetpack/androidx/releases/core
