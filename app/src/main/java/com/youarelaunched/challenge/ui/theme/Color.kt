@@ -14,6 +14,7 @@ private val Background = Color(0xFFFCFCFC)
 private val Green = Color(0xFF55C595)
 
 val LightColorsPalette = VendorAppColors(
+    textSpecial = Green,
     text = GraySecondary,
     textDark = GrayPrimary,
     textLight = Color.White,
@@ -26,9 +27,12 @@ val LightColorsPalette = VendorAppColors(
 
 @Stable
 data class VendorAppColors(
+
+    val textSpecial: Color,
     val text: Color,
     val textDark: Color,
     val textLight: Color,
+
 
     val buttonSelected: Color,
     val buttonUnselected: Color,

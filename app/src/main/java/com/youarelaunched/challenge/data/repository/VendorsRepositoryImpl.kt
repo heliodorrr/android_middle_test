@@ -15,18 +15,24 @@ class VendorsRepositoryImpl @Inject constructor(
     private val api: ApiVendors
 ) : VendorsRepository {
 
-    override suspend fun getVendors(): List<Vendor> = withContext(workDispatcher) {
-        api.getVendors().map {
-            it.toVendor()
-        }
+    override suspend fun getVendors(searchQuery: String): List<Vendor> = withContext(workDispatcher) {
+        api.getVendors().asSequence()
+            .filter {
+                it.companyName.startsWith(searchQuery, ignoreCase = true) || searchQuery.isEmpty()
+            }
+            .map { async { it.toVendor() } }
+            .toList()
+            .awaitAll()
+    }
+
+    override suspend fun getAllVendors(): List<Vendor> = withContext(workDispatcher) {
+        return@withContext api.getVendors().map { it.toVendor() }
     }
 
     private suspend fun NetworkVendor.toVendor() = coroutineScope {
 
         val categories = categories?.map {
-            async {
-                it.toCategory()
-            }
+            async { it.toCategory() }
         }
 
         val tags = tags?.let { tagsList ->

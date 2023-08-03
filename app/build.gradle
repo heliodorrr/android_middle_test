@@ -80,4 +80,15 @@ dependencies {
     kapt hiltDependencies.kapt
 
     implementation retrofit.jsonConverter
+
+    testImplementation test.junit
+    testImplementation test.core
+    testImplementation test.coroutines
+    testImplementation test.mockk
+
+    androidTestImplementation instrumentalTest.runner
+    androidTestImplementation instrumentalTest.rules
+    androidTestImplementation instrumentalTest.composeTest
+    debugImplementation instrumentalTest.composeTestActivity
+
 }

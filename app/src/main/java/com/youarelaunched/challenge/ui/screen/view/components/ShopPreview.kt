@@ -51,7 +51,7 @@ fun ShopPreview(
 
         FavoriteButton(
             favorite = favorite,
-            onClick = { },
+            onClick = {  },
             modifier = Modifier.constrainAs(favoriteBtn) {
                 end.linkTo(
                     anchor = parent.end, margin = 10.dp
